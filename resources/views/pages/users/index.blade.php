@@ -120,7 +120,7 @@
                                 <td>{{ $user->created_at }}</td>
                                 <td>
                                     @if($user->file)
-                                        <img src="{{ asset('storage/'.$user->file) }}" alt="User Image" class="h-auto rounded-circle">
+                                        <img src="{{ asset('storage/'.$user->file) }}" alt="User Image" class="h-auto rounded-circle" style="width: 50px; height: 50px;">
                                     @else
                                         <i class="ti ti-camera ti-md"></i>
                                     @endif
