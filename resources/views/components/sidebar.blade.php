@@ -38,6 +38,8 @@
 
     <div class="menu-inner-shadow"></div>
 
+
+
     <ul class="menu-inner py-1">
         <!-- Page -->
         <li class="menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
@@ -46,6 +48,10 @@
             <div >Dashboards</div>
           </a>
         </li>
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Kegiataan</span>
+          </li>
 
         <li class="menu-item {{ Request::is('transaksi*') ? 'active' : '' }}">
             <a href="{{ route('transaksi.index') }}" class="menu-link">
@@ -61,12 +67,7 @@
             </a>
           </li>
 
-        <li class="menu-item {{ Request::is('users*') ? 'active' : '' }}">
-            <a href="{{ route('users.index') }}" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-users"></i>
-              <div >Users</div>
-            </a>
-          </li>
+
 
           <li class="menu-item {{ Request::is('stock*') ? 'active' : '' }}">
             <a href="{{ route('stock.index') }}" class="menu-link">
@@ -75,7 +76,11 @@
             </a>
           </li>
 
-          <li class="menu-item {{ Request::is('satuan*') ||  Request::is('barang*') || Request::is('category*') ? 'active open' : '' }}">
+          <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Data Master</span>
+          </li>
+
+        <li class="menu-item {{ Request::is('satuan*') ||  Request::is('barang*') || Request::is('category*') ? 'active open' : '' }}">
             <a href="#" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-files"></i>
                 <div data-i18n="Front Pages">Data Barang</div>
@@ -98,6 +103,28 @@
                 </li>
             </ul>
         </li>
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Manajemen Akun</span>
+          </li>
+
+        <li class="menu-item {{ Request::is('users*') ? 'active' : '' }}">
+            <a href="{{ route('users.index') }}" class="menu-link">
+              <i class="menu-icon tf-icons ti ti-users"></i>
+              <div >Users</div>
+            </a>
+          </li>
+
+          <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Laporan</span>
+          </li>
+
+          <li class="menu-item ">
+            <a href="#" class="menu-link">
+              <i class="menu-icon tf-icons ti ti-report"></i>
+              <div >Laporan Stock</div>
+            </a>
+          </li>
 
       </ul>
   </aside>
