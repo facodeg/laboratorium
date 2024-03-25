@@ -94,7 +94,7 @@ class MasukBarangController extends Controller
 
 
         //redirect()->route('masukbarang.create')->with('success', 'Data masuk barang berhasil disimpan.');
-        return view('pages.masukbarang.create', compact('barangs','masukbarangs' ,'nomorFaktur'));
+        return view('pages.masukbarang.create')->with('success', 'Data masuk barang berhasil disimpan.');
     }
 
 
