@@ -43,5 +43,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('masukbarang', [MasukBarangController::class, 'proses'])->name('masukbarang.proses');
     Route::put('transaksi', [TransaksiController::class, 'proses'])->name('transaksi.proses');
     Route::delete('/transaksi/{id}', [TransaksiController::class, 'hapus'])->name('transaksi.hapus');
+    Route::delete('/masukbarang/{id}', [TransaksiController::class, 'hapus'])->name('masukbarang.hapus');
 
 });
