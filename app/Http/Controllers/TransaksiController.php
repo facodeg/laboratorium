@@ -38,7 +38,7 @@ class TransaksiController extends Controller
         $nextInvoiceNumber = Transaksi::max('id') + 1;
 
         // Format nomor faktur dengan padding nol di depan
-        $nomorFaktur = str_pad($nextInvoiceNumber, 7, '0', STR_PAD_LEFT) . 'LAB-OUT';
+        $no_pengeluaran = str_pad($nextInvoiceNumber, 7, '0', STR_PAD_LEFT) . 'LAB-OUT';
 
         $transaksis = Transaksi::query()
             ->when($request->input('name'), function ($query, $name) {
@@ -55,7 +55,7 @@ class TransaksiController extends Controller
 
         $barangs = Barang::all();
 
-        return view('pages.transaksi.create', compact('barangs', 'transaksis', 'nomorFaktur'));
+        return view('pages.transaksi.create', compact('barangs', 'transaksis', 'no_pengeluaran'));
     }
 
     /**
