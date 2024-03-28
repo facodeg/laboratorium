@@ -50,6 +50,57 @@
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">Kondisi</label>
+                            <div class=" mb-2">
+                                <div class="col-xl-12 p-2">
+                                    <label class="switch switch-success">
+                                        <input type="radio" class="switch-input" name="kondisi" value="1" checked>
+                                        <span class="switch-toggle-slider">
+                                            <span class="switch-on"></span>
+                                            <span class="switch-off"></span>
+                                        </span>
+                                        <span class="switch-label">Baik</span>
+                                    </label>
+
+                                    <label class="switch switch-danger">
+                                        <input type="radio" class="switch-input" name="kondisi" value="2">
+                                        <span class="switch-toggle-slider">
+                                            <span class="switch-on"></span>
+                                            <span class="switch-off"></span>
+                                        </span>
+                                        <span class="switch-label">Tidak Baik</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Pemasangan Label</label>
+                            <div class=" mb-2">
+                                <div class="col-xl-12 p-2">
+                                    <label class="switch switch-success">
+                                        <input type="radio" class="switch-input" name="label" value="1" checked>
+                                        <span class="switch-toggle-slider">
+                                            <span class="switch-on"></span>
+                                            <span class="switch-off"></span>
+                                        </span>
+                                        <span class="switch-label">Terpasang</span>
+                                    </label>
+
+                                    <label class="switch switch-danger">
+                                        <input type="radio" class="switch-input" name="label" value="2">
+                                        <span class="switch-toggle-slider">
+                                            <span class="switch-on"></span>
+                                            <span class="switch-off"></span>
+                                        </span>
+                                        <span class="switch-label">Tidak Terpasang</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3">
                             <label class="form-label">Jumlah</label>
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
@@ -106,6 +157,8 @@
                                     <th>Spesifikasi</th>
                                     <th>Satuan</th>
                                     <th>Category</th>
+                                    <th>Kondisi</th>
+                                    <th>Label</th>
                                     <th>Jumlah</th>
                                     <th>Action</th>
                                 </tr>
@@ -118,6 +171,8 @@
                                     <td>{{ $masukbarang->barang->spesifikasi }}</td>
                                     <td>{{ $masukbarang->barang->satuan->name }}</td>
                                     <td>{{ $masukbarang->barang->category->name }}</td>
+                                    <td>{{ $masukbarang->kondisi }}</td>
+                                    <td>{{ $masukbarang->label }}</td>
                                     <td>{{ $masukbarang->jumlah }}</td>
                                     <td>
                                         <div class="dropdown">

@@ -70,12 +70,13 @@ class MasukBarangController extends Controller
     {
 
         $validatedData = $request->validate([
-
             'id_barang' => 'required',
             'jumlah' => 'required|numeric',
+            'kondisi' => 'required',
+            'label' => 'required',
         ]);
 
-            // Membuat atau menemukan record Stock yang sesuai dengan id_barang
+        // Membuat atau menemukan record Stock yang sesuai dengan id_barang
         $stock = Stock::firstOrNew(['id_barang' => $validatedData['id_barang']]);
 
         // Menambahkan jumlah baru ke stock yang ada
@@ -84,16 +85,18 @@ class MasukBarangController extends Controller
         // Simpan perubahan ke dalam database
         $stock->save();
 
+        // Ambil id_user dari user yang sedang login
+        $id_user = auth()->user()->id;
 
         MasukBarang::create([
-
             'id_barang' => $validatedData['id_barang'],
             'jumlah' => $validatedData['jumlah'],
+            'kondisi' => $validatedData['kondisi'],
+            'label' => $validatedData['label'],
+            'id_user' => $id_user, // Gunakan id_user dari user yang sedang login
         ]);
 
-
-        return
-        redirect()->route('masukbarang.create')->with('success', 'Data masuk barang berhasil disimpan.');
+        return redirect()->route('masukbarang.create')->with('success', 'Data masuk barang berhasil disimpan.');
     }
 
 

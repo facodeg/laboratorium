@@ -26,9 +26,9 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    // Route::get('/home', function () {
-    //     return view('dashboard');
-    // })->name('home');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/home', [DashboardController::class, 'index'])->name('home');
+    });
 
     Route::resource('users', UserController::class);
     Route::resource('category', CategoryController::class);

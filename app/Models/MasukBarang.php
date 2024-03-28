@@ -17,6 +17,9 @@ class MasukBarang extends Model
         'tanggal_masuk',
         'jumlah',
         'status',
+        'kondisi',
+        'label',
+        'id_user',
     ];
 
     public function barang()
