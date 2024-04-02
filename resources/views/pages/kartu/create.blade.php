@@ -126,7 +126,7 @@
                 </style>
 
                 <div class="card">
-                    <@if($barangHistories->isNotEmpty() && $barangHistories->first()->barang)
+                    @if($barangHistories->isNotEmpty() && $barangHistories->first()->barang)
                     <div class="card-header border-bottom print-show">
                         <h5 class="mb-0">Kartu Stock Barang: {{ $barangHistories->first()->barang->name }}</h5>
                         <p class="mb-0">Periode: {{ $tanggalAwal }} sampai {{ $tanggalAkhir }}</p>
