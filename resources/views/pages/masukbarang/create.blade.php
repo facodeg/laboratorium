@@ -101,13 +101,13 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label">Jumlah</label>
+                            <label class="form-label">Jumlah Masuk</label>
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                         class="ti ti-stats-up"></i></span>
-                                <input type="number" class="form-control @error('jumlah') is-invalid @enderror"
-                                    name="jumlah">
-                                @error('jumlah')
+                                <input type="number" class="form-control @error('jumlah_masuk') is-invalid @enderror"
+                                    name="jumlah_masuk">
+                                @error('jumlah_masuk')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -159,7 +159,7 @@
                                     <th>Category</th>
                                     <th>Kondisi</th>
                                     <th>Label</th>
-                                    <th>Jumlah</th>
+                                    <th>Jumlah Masuk</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -173,7 +173,7 @@
                                     <td>{{ $masukbarang->barang->category->name }}</td>
                                     <td>{{ $masukbarang->kondisi }}</td>
                                     <td>{{ $masukbarang->label }}</td>
-                                    <td>{{ $masukbarang->jumlah }}</td>
+                                    <td>{{ $masukbarang->jumlah_masuk }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KartuController;
 use App\Http\Controllers\MasukBarangController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\StockController;
@@ -36,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('barang', BarangController::class);
 
     Route::resource('dashboard', DashboardController::class);
+
+    Route::resource('kartu', KartuController::class);
 
     Route::resource('transaksi', TransaksiController::class);
     Route::resource('masukbarang', MasukBarangController::class);

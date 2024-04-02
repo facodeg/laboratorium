@@ -58,7 +58,7 @@
                     <td>{{ $masukbarang->barang->satuan->name }}</td>
                     <td>{{ $masukbarang->barang->category->name }}</td>
                     <td>{{ $masukbarang->tanggal_masuk }}</td>
-                    <td>{{ $masukbarang->jumlah }}</td>
+                    <td>{{ $masukbarang->jumlah_masuk }}</td>
                     <td>
                         <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

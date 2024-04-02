@@ -71,7 +71,7 @@ class MasukBarangController extends Controller
 
         $validatedData = $request->validate([
             'id_barang' => 'required',
-            'jumlah' => 'required|numeric',
+            'jumlah_masuk' => 'required|numeric',
             'kondisi' => 'required',
             'label' => 'required',
         ]);
@@ -80,7 +80,7 @@ class MasukBarangController extends Controller
         $stock = Stock::firstOrNew(['id_barang' => $validatedData['id_barang']]);
 
         // Menambahkan jumlah baru ke stock yang ada
-        $stock->stock += $validatedData['jumlah'];
+        $stock->stock += $validatedData['jumlah_masuk'];
 
         // Simpan perubahan ke dalam database
         $stock->save();
@@ -90,7 +90,8 @@ class MasukBarangController extends Controller
 
         MasukBarang::create([
             'id_barang' => $validatedData['id_barang'],
-            'jumlah' => $validatedData['jumlah'],
+            'jumlah_masuk' => $validatedData['jumlah_masuk'],
+            'jumlah_sisa' => $stock->stock,
             'kondisi' => $validatedData['kondisi'],
             'label' => $validatedData['label'],
             'id_user' => $id_user, // Gunakan id_user dari user yang sedang login
@@ -109,7 +110,7 @@ class MasukBarangController extends Controller
         $stock = Stock::firstOrNew(['id_barang' => $masukBarang->id_barang]);
 
         // Tambahkan kembali jumlah yang dihapus dari stok yang ada
-        $stock->stock -= $masukBarang->jumlah;
+        $stock->stock -= $masukBarang->jumlah_masuk;
 
         // Simpan perubahan ke dalam database
         $stock->save();
@@ -182,7 +183,8 @@ class MasukBarangController extends Controller
         $stock = Stock::firstOrNew(['id_barang' => $masukBarang->id_barang]);
 
         // Kurangi stock yang ada dengan jumlah yang dihapus
-        $stock->stock -= $masukBarang->jumlah;
+        $stock->stock -= $masukBarang->jumlah_masuk;
+
 
         // Simpan perubahan ke dalam database
         $stock->save();

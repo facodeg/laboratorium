@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Kartu;
 use App\Models\Stock;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
-class TransaksiController extends Controller
+class KartuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //
+
     public function index(Request $request)
     {
         $transaksis = Transaksi::query()
-        ->when($request->input('name'), function ($query, $name) {
+        ->when($request->input('name1'), function ($query, $name) {
             return $query->whereHas('barang', function ($subQuery) use ($name) {
                 $subQuery->where('name', 'like', '%' . $name . '%');
             });
@@ -27,7 +27,14 @@ class TransaksiController extends Controller
         ->orderBy('id', 'desc')
         ->paginate(10);
 
-    return view('pages.transaksi.index', compact('transaksis'));
+        $barangHistories = Kartu::query()
+        ->when($request->input('name'), function ($query, $name) {
+            $query->where('name', 'like', '%' . $name . '%');
+        })
+        ->orderBy('id', 'desc')
+        ->paginate(10);
+
+    return view('pages.transaksi.index', compact('transaksis', 'barangHistories'));
     }
 
     /**
@@ -35,13 +42,13 @@ class TransaksiController extends Controller
      */
     public function create(Request $request)
     {
-        $nextInvoiceNumber = Transaksi::max('id') + 1;
+
 
         // Format nomor faktur dengan padding nol di depan
-        $no_pengeluaran = str_pad($nextInvoiceNumber, 7, '0', STR_PAD_LEFT) . 'LAB-OUT';
+
 
         $transaksis = Transaksi::query()
-            ->when($request->input('name'), function ($query, $name) {
+            ->when($request->input('name1'), function ($query, $name) {
                 return $query->whereHas('barang', function ($subQuery) use ($name) {
                     $subQuery->where('name', 'like', '%' . $name . '%');
                 });
@@ -50,12 +57,32 @@ class TransaksiController extends Controller
                 $query->where('status', 'pending');
             })
             ->with(['barang', 'barang.category', 'barang.satuan'])
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->orderBy('id', 'desc');
 
         $barangs = Barang::all();
 
-        return view('pages.transaksi.create', compact('barangs', 'transaksis', 'no_pengeluaran'));
+        $barangHistories = Kartu::query()
+        ->when($request->input('tanggal_awal') && $request->input('tanggal_akhir'), function ($query) use ($request) {
+            $query->whereBetween('tanggal', [$request->input('tanggal_awal'), $request->input('tanggal_akhir')]);
+        })
+        ->when($request->input('id_barang'), function ($query) use ($request) {
+            $query->where('id_barang', $request->input('id_barang'));
+        })
+        ->orderBy('id', 'desc');
+
+    // Jika 'tanggal_awal', 'tanggal_akhir', dan 'id_barang' tidak kosong, maka tidak menggunakan paginate
+    if ($request->input('tanggal_awal') && $request->input('tanggal_akhir') && $request->input('id_barang')) {
+        $barangHistories = $barangHistories->paginate(0);
+    } else {
+        $barangHistories = $barangHistories->paginate(5);
+    }
+
+    $tanggalAwal = $request->input('tanggal_awal');
+    $tanggalAkhir = $request->input('tanggal_akhir');
+
+
+
+        return view('pages.kartu.create', compact('barangs', 'transaksis' ,'barangHistories','tanggalAwal', 'tanggalAkhir'));
     }
 
     /**
@@ -65,29 +92,26 @@ class TransaksiController extends Controller
     {
         $validatedData = $request->validate([
             'id_barang' => 'required',
-            'jumlah_keluar' => 'required|numeric',
+            'jumlah' => 'required|numeric',
         ]);
 
         // Mencari atau membuat record Stock yang sesuai dengan id_barang
         $stock = Stock::firstOrNew(['id_barang' => $validatedData['id_barang']]);
 
         // Mengecek apakah stok mencukupi
-        if ($stock->stock < $validatedData['jumlah_keluar']) {
+        if ($stock->stock < $validatedData['jumlah']) {
             return redirect()->route('transaksi.create')->with('error', 'Data stock tidak mencukupi');
         } else {
-            // Mengurangi stok dari jumlah_keluar yang dipesan
-            $stock->stock -= $validatedData['jumlah_keluar'];
+            // Mengurangi stok dari jumlah yang dipesan
+            $stock->stock -= $validatedData['jumlah'];
 
             // Menyimpan perubahan ke dalam database
             $stock->save();
-            $id_user = auth()->user()->id;
 
             // Membuat record transaksi
             Transaksi::create([
                 'id_barang' => $validatedData['id_barang'],
-                'jumlah_keluar' => $validatedData['jumlah_keluar'],
-                'jumlah_sisa' => $stock->stock,
-                'id_user' => $id_user,
+                'jumlah' => $validatedData['jumlah'],
             ]);
 
             return redirect()->route('transaksi.create')->with('success', 'Data masuk barang berhasil disimpan.');
@@ -132,8 +156,8 @@ class TransaksiController extends Controller
         // Temukan atau buat record Stock yang sesuai dengan id_barang
         $stock = Stock::firstOrNew(['id_barang' => $masukBarang->id_barang]);
 
-        // Tambahkan kembali jumlah_keluar yang dihapus dari stok yang ada
-        $stock->stock += $masukBarang->jumlah_keluar;
+        // Tambahkan kembali jumlah yang dihapus dari stok yang ada
+        $stock->stock += $masukBarang->jumlah;
 
         // Simpan perubahan ke dalam database
         $stock->save();
@@ -182,8 +206,8 @@ class TransaksiController extends Controller
         // Temukan atau buat record Stock yang sesuai dengan id_barang
         $stock = Stock::firstOrNew(['id_barang' => $masukBarang->id_barang]);
 
-        // Tambahkan kembali jumlah_keluar yang dihapus dari stok yang ada
-        $stock->stock += $masukBarang->jumlah_keluar;
+        // Tambahkan kembali jumlah yang dihapus dari stok yang ada
+        $stock->stock += $masukBarang->jumlah;
 
         // Simpan perubahan ke dalam database
         $stock->save();

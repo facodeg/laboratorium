@@ -57,13 +57,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Jumlah</label>
+                            <label class="form-label">Jumlah Keluar</label>
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                         class="ti ti-stats-up"></i></span>
-                                <input type="number" class="form-control @error('jumlah') is-invalid @enderror"
-                                    name="jumlah">
-                                @error('jumlah')
+                                <input type="number" class="form-control @error('jumlah_keluar') is-invalid @enderror"
+                                    name="jumlah_keluar">
+                                @error('jumlah_keluar')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -113,7 +113,7 @@
                                     <th>Spesifikasi</th>
                                     <th>Satuan</th>
                                     <th>Category</th>
-                                    <th>Jumlah</th>
+                                    <th>Jumlah Keluar</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -125,7 +125,7 @@
                                     <td>{{ $transaksi->barang->spesifikasi }}</td>
                                     <td>{{ $transaksi->barang->satuan->name }}</td>
                                     <td>{{ $transaksi->barang->category->name }}</td>
-                                    <td>{{ $transaksi->jumlah }}</td>
+                                    <td>{{ $transaksi->jumlah_keluar }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

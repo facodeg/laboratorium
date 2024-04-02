@@ -15,7 +15,8 @@ class Transaksi extends Model
         'id_barang',
         'no_pengeluaran',
         'tanggal_keluar',
-        'jumlah',
+        'jumlah_keluar',
+        'jumlah_sisa',
         'status',
     ];
 

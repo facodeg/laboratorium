@@ -30,6 +30,7 @@
       rel="stylesheet"
     />
 
+
     <!-- Icons -->
     <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/fonts/fontawesome.css" />
     <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/fonts/tabler-icons.css" />
@@ -43,6 +44,9 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="{{ asset('sneat') }}/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css" />
+
 
     {{-- <link href="{{ asset('sneat') }}/assets/vendor/libs/DataTables/datatables.min.css" rel="stylesheet"> --}}
 {{--
@@ -69,6 +73,7 @@
     <script src="{{ asset('sneat') }}/assets/vendor/js/template-customizer.js"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('sneat') }}/assets/js/config.js"></script>
+    {{-- <script src="{{ asset('sneat') }}/assets/vendor/libs/jquery/jquery.js"></script> --}}
   </head>
 
   <body>
@@ -149,6 +154,8 @@
         <script src="{{ asset('sneat') }}/assets/vendor/libs/moment/moment.js"></script>
         <script src="{{ asset('sneat') }}/assets/vendor/libs/flatpickr/flatpickr.js"></script>
         <script src="{{ asset('sneat') }}/assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
+        <script src="{{ asset('sneat') }}/assets/vendor/libs/flatpickr/flatpickr.js"></script>
+        <script src="{{ asset('sneat') }}/assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
            <!-- build:js assets/vendor/js/core.js -->
 
 

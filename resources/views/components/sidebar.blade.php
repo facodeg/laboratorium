@@ -119,10 +119,10 @@
             <span class="menu-header-text">Laporan</span>
           </li>
 
-          <li class="menu-item ">
-            <a href="#" class="menu-link">
+          <li class="menu-item {{ Request::is('kartu*') ? 'active' : '' }}">
+            <a href="{{ route('kartu.create') }}"" class="menu-link">
               <i class="menu-icon tf-icons ti ti-report"></i>
-              <div >Laporan Stock</div>
+              <div >Laporan Kartu Stock</div>
             </a>
           </li>
 

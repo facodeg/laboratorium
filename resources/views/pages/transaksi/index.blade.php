@@ -45,7 +45,7 @@
                     <th>Satuan</th>
                     <th>Category</th>
                     <th>Tanggal Keluar</th>
-                    <th>Jumlah</th>
+                    <th>Jumlah keluar</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -58,7 +58,7 @@
                     <td>{{ $transaksi->barang->satuan->name }}</td>
                     <td>{{ $transaksi->barang->category->name }}</td>
                     <td>{{ $transaksi->tanggal_keluar }}</td>
-                    <td>{{ $transaksi->jumlah }}</td>
+                    <td>{{ $transaksi->jumlah_keluar }}</td>
                     <td>
                         <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
