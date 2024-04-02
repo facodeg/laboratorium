@@ -126,10 +126,12 @@
                 </style>
 
                 <div class="card">
+                    <@if($barangHistories->isNotEmpty() && $barangHistories->first()->barang)
                     <div class="card-header border-bottom print-show">
                         <h5 class="mb-0">Kartu Stock Barang: {{ $barangHistories->first()->barang->name }}</h5>
                         <p class="mb-0">Periode: {{ $tanggalAwal }} sampai {{ $tanggalAkhir }}</p>
                     </div>
+                      @endif
                     <div class="card-datatable table-responsive pt-3">
                         <table class="dt-complex-header table table-bordered" id="table-barang">
                             <thead>
