@@ -14,7 +14,7 @@
 
 <!-- Barang List Table -->
 <div class="card">
-    <div class="card-header border-bottom">
+    <div class="card-header border-bottom  align-items-center">
         <div class="float-right">
             <a href="{{ route('export.excel') }}" class="btn btn-success">
                 <i class="ti ti-file-excel"></i> Export to Excel
