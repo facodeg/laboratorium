@@ -8,7 +8,7 @@
           <script>
             document.write(new Date().getFullYear());
           </script>
-          , made with ❤️ by <a href="#" target="_blank" class="fw-semibold">Sigit Putra Prabowo</a>
+          , made with ❤️ by <a href="#" target="_blank" class="fw-semibold">RSUD LEUWILIANG</a>
         </div>
         <div>
           <a
