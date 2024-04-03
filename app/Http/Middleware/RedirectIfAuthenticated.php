@@ -19,9 +19,24 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
 
+        // foreach ($guards as $guard) {
+        //     if (Auth::guard($guard)->check()) {
+        //         return redirect(RouteServiceProvider::HOME);
+        //     }
+        // }
+
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                $user = auth()->user();
+                if ( Auth::check() && $request->user()->role == 'admin') {
+                    return redirect ()->route('admin.beranda');
+                } elseif ($user->role == 'user') {
+                    return redirect ()->route('user.beranda');
+                } else {
+                    Auth::logout();
+                    flash('Anda tidak memiliki hak akses')->error();
+                    return redirect ()->route('login');
+                }
             }
         }
 

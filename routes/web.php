@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['role:admin'])->group(function () {
         Route::get('/home', [DashboardController::class, 'index'])->name('home');
     });
 

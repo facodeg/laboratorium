@@ -18,6 +18,7 @@ class Transaksi extends Model
         'jumlah_keluar',
         'jumlah_sisa',
         'status',
+        'id_user',
     ];
 
     public function barang()

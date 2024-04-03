@@ -14,7 +14,7 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-
+        
         $masukbarangs = MasukBarang::query()
         ->when($request->input('name'), function ($query, $name) {
             return $query->whereHas('barang', function ($subQuery) use ($name) {
