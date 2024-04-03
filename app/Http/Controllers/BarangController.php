@@ -86,10 +86,10 @@ class BarangController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'spesifikasi' => 'required',
+            'spesifikasi' => 'nullable',
             'id_satuan' => 'required',
             'id_category' => 'required',
-            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $barang->nama = $request->nama;
