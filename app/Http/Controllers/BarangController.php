@@ -92,7 +92,7 @@ class BarangController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $barang->nama = $request->nama;
+        $barang->name = $request->name;
         $barang->spesifikasi = $request->spesifikasi;
         $barang->id_satuan = $request->id_satuan;
         $barang->id_category = $request->id_category;
