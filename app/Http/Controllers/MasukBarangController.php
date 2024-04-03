@@ -82,10 +82,6 @@ class MasukBarangController extends Controller
         // Menambahkan jumlah baru ke stock yang ada
         $stock->stock += $validatedData['jumlah_masuk'];
 
-        // Simpan perubahan ke dalam database
-        $stock->save();
-
-        // Ambil id_user dari user yang sedang login
         $id_user = auth()->user()->id;
 
         MasukBarang::create([
@@ -96,6 +92,11 @@ class MasukBarangController extends Controller
             'label' => $validatedData['label'],
             'id_user' => $id_user, // Gunakan id_user dari user yang sedang login
         ]);
+        // Simpan perubahan ke dalam database
+        $stock->save();
+
+        // Ambil id_user dari user yang sedang login
+
 
         return redirect()->route('masukbarang.create')->with('success', 'Data masuk barang berhasil disimpan.');
     }

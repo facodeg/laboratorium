@@ -57,7 +57,7 @@ class KartuController extends Controller
                 $query->where('status', 'pending');
             })
             ->with(['barang', 'barang.category', 'barang.satuan'])
-            ->orderBy('id', 'desc');
+            ->orderBy('tanggal', 'asc');
 
         $barangs = Barang::all();
 
@@ -68,7 +68,7 @@ class KartuController extends Controller
         ->when($request->input('id_barang'), function ($query) use ($request) {
             $query->where('id_barang', $request->input('id_barang'));
         })
-        ->orderBy('id', 'desc');
+        ->orderBy('tanggal', 'asc');
 
     // Jika 'tanggal_awal', 'tanggal_akhir', dan 'id_barang' tidak kosong, maka tidak menggunakan paginate
     if ($request->input('tanggal_awal') && $request->input('tanggal_akhir') && $request->input('id_barang')) {

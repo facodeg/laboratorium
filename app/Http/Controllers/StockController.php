@@ -21,7 +21,7 @@ class StockController extends Controller
 
             ->with(['barang', 'barang.category', 'barang.satuan'])
             ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->paginate(300);
 
         return view('pages.stock.index', compact('masukbarangs'));
     }

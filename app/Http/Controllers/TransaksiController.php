@@ -76,10 +76,10 @@ class TransaksiController extends Controller
             return redirect()->route('transaksi.create')->with('error', 'Data stock tidak mencukupi');
         } else {
             // Mengurangi stok dari jumlah_keluar yang dipesan
+
+
             $stock->stock -= $validatedData['jumlah_keluar'];
 
-            // Menyimpan perubahan ke dalam database
-            $stock->save();
             $id_user = auth()->user()->id;
 
             // Membuat record transaksi
@@ -89,6 +89,9 @@ class TransaksiController extends Controller
                 'jumlah_sisa' => $stock->stock,
                 'id_user' => $id_user,
             ]);
+            // Menyimpan perubahan ke dalam database
+            $stock->save();
+
 
             return redirect()->route('transaksi.create')->with('success', 'Data masuk barang berhasil disimpan.');
         }

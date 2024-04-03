@@ -15,6 +15,11 @@
 <!-- Barang List Table -->
 <div class="card">
     <div class="card-header border-bottom">
+        <div class="float-right">
+            <a href="{{ route('export.excel') }}" class="btn btn-success">
+                <i class="ti ti-file-excel"></i> Export to Excel
+            </a>
+        </div>
         <h5 class="card-title mb-3 d-flex justify-content-between align-items-center">
             Search Filter
 

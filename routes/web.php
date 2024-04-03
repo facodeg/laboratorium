@@ -3,6 +3,7 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\KartuController;
 use App\Http\Controllers\MasukBarangController;
 use App\Http\Controllers\SatuanController;
@@ -47,5 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('transaksi', [TransaksiController::class, 'proses'])->name('transaksi.proses');
     Route::delete('/transaksi/{id}', [TransaksiController::class, 'hapus'])->name('transaksi.hapus');
     Route::delete('/masukbarang/{id}', [TransaksiController::class, 'hapus'])->name('masukbarang.hapus');
+
+    Route::get('/export/excel', [ExportController::class, 'exportToExcel'])->name('export.excel');
 
 });
