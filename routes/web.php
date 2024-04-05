@@ -27,31 +27,6 @@ Route::get('/', function () {
     return view('pages.auth.login');
 });
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::middleware(['role:admin'])->group(function () {
-//         Route::get('/home', [DashboardController::class, 'index'])->name('home');
-//     });
-
-//     Route::resource('users', UserController::class);
-//     Route::resource('category', CategoryController::class);
-//     Route::resource('satuan', SatuanController::class);
-//     Route::resource('barang', BarangController::class);
-
-//     Route::resource('dashboard', DashboardController::class);
-
-//     Route::resource('kartu', KartuController::class);
-
-//     Route::resource('transaksi', TransaksiController::class);
-//     Route::resource('masukbarang', MasukBarangController::class);
-//     Route::resource('stock', StockController::class);
-//     Route::put('masukbarang', [MasukBarangController::class, 'proses'])->name('masukbarang.proses');
-//     Route::put('transaksi', [TransaksiController::class, 'proses'])->name('transaksi.proses');
-//     Route::delete('/transaksi/{id}', [TransaksiController::class, 'hapus'])->name('transaksi.hapus');
-//     Route::delete('/masukbarang/{id}', [TransaksiController::class, 'hapus'])->name('masukbarang.hapus');
-
-//     Route::get('/export/excel', [ExportController::class, 'exportToExcel'])->name('export.excel');
-
-// });
 
 Route::prefix('admin')
     ->middleware(['auth', 'auth.admin'])
