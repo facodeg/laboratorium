@@ -26,7 +26,7 @@
         </h5>
         <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
             <div class="col-md-12">
-                <form method="GET" action="{{ route('masukbarang.index') }}">
+                <form method="GET" action="{{ route('stock.index') }}">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="name">
                         <div class="input-group-append">
