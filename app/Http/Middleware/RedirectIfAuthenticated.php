@@ -19,19 +19,13 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
 
-        // foreach ($guards as $guard) {
-        //     if (Auth::guard($guard)->check()) {
-        //         return redirect(RouteServiceProvider::HOME);
-        //     }
-        // }
-
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 $user = auth()->user();
-                if ( Auth::check() && $request->user()->role == 'admin') {
-                    return redirect ()->route('admin.beranda');
+                if ( $user->role == 'admin') {
+                    return redirect()->route('admin.home');
                 } elseif ($user->role == 'user') {
-                    return redirect ()->route('user.beranda');
+                    return redirect()->route('user.home');
                 } else {
                     Auth::logout();
                     flash('Anda tidak memiliki hak akses')->error();
@@ -40,6 +34,29 @@ class RedirectIfAuthenticated
             }
         }
 
+
+
         return $next($request);
     }
+    // public function handle(Request $request, Closure $next, string ...$guards): Response
+    // {
+    //     $guards = empty($guards) ? [null] : $guards;
+
+    //     foreach ($guards as $guard) {
+    //         if (Auth::guard($guard)->check()) {
+    //             $user = auth()->user();
+    //             if ( Auth::check() && $request->user()->role == 'admin') {
+    //                 return redirect(RouteServiceProvider::HOME);
+    //             } elseif ($user->role == 'user') {
+    //                 return redirect(RouteServiceProvider::HOME);
+    //             } else {
+    //                 Auth::logout();
+    //                 flash('Anda tidak memiliki hak akses')->error();
+    //                 return redirect ()->route('login');
+    //             }
+    //         }
+    //     }
+
+    //     return $next($request);
+    // }
 }

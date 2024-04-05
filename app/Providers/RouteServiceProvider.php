@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = '/home';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -35,6 +36,24 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+
+             // Mengarahkan pengguna ke rute yang sesuai berdasarkan peran
+             Route::middleware('web')
+             ->group(function () {
+                 Route::get('/home', function () {
+                     $user = Auth::user();
+
+                     if ($user->role == 'admin') {
+                         return redirect()->route('admin.home');
+                     } elseif ($user->role == 'user') {
+                         return redirect()->route('user.home');
+                     } else {
+                         Auth::logout();
+                         flash('Anda tidak memiliki hak akses')->error();
+                         return redirect()->route('login');
+                     }
+                 })->name('home');
+             });
         });
     }
 }

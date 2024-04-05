@@ -41,44 +41,45 @@
 
 
     <ul class="menu-inner py-1">
-        <!-- Page -->
+        <!-- Menu yang umumnya terlihat untuk semua pengguna -->
         <li class="menu-item {{ Request::is('dashboard') ? 'active' : '' }}">
-          <a href="{{ route('dashboard.index') }}" class="menu-link">
-            <i class="menu-icon tf-icons ti ti-smart-home"></i>
-            <div >Dashboards</div>
-          </a>
+            <a href="{{ route('dashboard.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div>Dasbor</div>
+            </a>
         </li>
 
+        @if(auth()->user()->role == 'admin')
+        <!-- Menu yang hanya terlihat untuk admin -->
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Kegiataan</span>
-          </li>
+            <span class="menu-header-text">Kegiatan</span>
+        </li>
 
         <li class="menu-item {{ Request::is('transaksi*') ? 'active' : '' }}">
             <a href="{{ route('transaksi.index') }}" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-building-factory-2"></i>
-              <div >Transaksi</div>
+                <i class="menu-icon tf-icons ti ti-building-factory-2"></i>
+                <div>Transaksi</div>
             </a>
-          </li>
+        </li>
 
-          <li class="menu-item {{ Request::is('masukbarang*') ? 'active' : '' }}">
+        <li class="menu-item {{ Request::is('masukbarang*') ? 'active' : '' }}">
             <a href="{{ route('masukbarang.index') }}" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-truck"></i>
-              <div >Masuk Barang</div>
+                <i class="menu-icon tf-icons ti ti-truck"></i>
+                <div>Masuk Barang</div>
             </a>
-          </li>
+        </li>
 
-
-
-          <li class="menu-item {{ Request::is('stock*') ? 'active' : '' }}">
+        <li class="menu-item {{ Request::is('stock*') ? 'active' : '' }}">
             <a href="{{ route('stock.index') }}" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-home"></i>
-              <div >Stock</div>
+                <i class="menu-icon tf-icons ti ti-home"></i>
+                <div>Stok</div>
             </a>
-          </li>
+        </li>
 
-          <li class="menu-header small text-uppercase">
+        <!-- Menu header untuk Data Master -->
+        <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Data Master</span>
-          </li>
+        </li>
 
         <li class="menu-item {{ Request::is('satuan*') ||  Request::is('barang*') || Request::is('category*') ? 'active open' : '' }}">
             <a href="#" class="menu-link menu-toggle">
@@ -93,7 +94,7 @@
                 </li>
                 <li class="menu-item {{ Request::is('category*') ? 'active' : '' }}">
                     <a href="{{ route('category.index') }}" class="menu-link{{ Request::is('category*') ? ' active' : '' }}">
-                        <div data-i18n="Pricing">Category</div>
+                        <div data-i18n="Pricing">Kategori</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('barang*') ? 'active' : '' }}">
@@ -104,27 +105,35 @@
             </ul>
         </li>
 
+        <!-- Menu header untuk Laporan -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Laporan</span>
+        </li>
+
+        <li class="menu-item {{ Request::is('kartu*') ? 'active' : '' }}">
+            <a href="{{ route('kartu.create') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-report"></i>
+                <div>Laporan Kartu Stok</div>
+            </a>
+        </li>
+        @endif
+
+        <!-- Menu umum untuk semua pengguna -->
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Manajemen Akun</span>
-          </li>
+        </li>
 
         <li class="menu-item {{ Request::is('users*') ? 'active' : '' }}">
             <a href="{{ route('users.index') }}" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-users"></i>
-              <div >Users</div>
+                <i class="menu-icon tf-icons ti ti-users"></i>
+                <div>Pengguna</div>
             </a>
-          </li>
+        </li>
 
-          <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Laporan</span>
-          </li>
+        <!-- Tambahkan item menu lain yang terlihat untuk semua pengguna -->
 
-          <li class="menu-item {{ Request::is('kartu*') ? 'active' : '' }}">
-            <a href="{{ route('kartu.create') }}"" class="menu-link">
-              <i class="menu-icon tf-icons ti ti-report"></i>
-              <div >Laporan Kartu Stock</div>
-            </a>
-          </li>
+        <!-- Tambahkan logika untuk peran lain jika diperlukan -->
 
-      </ul>
+    </ul>
+
   </aside>
