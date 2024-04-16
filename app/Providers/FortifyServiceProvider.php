@@ -21,7 +21,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-
     }
 
     /**
@@ -35,7 +34,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());
 
             return Limit::perMinute(5)->by($throttleKey);
         });
@@ -44,24 +43,26 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-       //login view
-       Fortify::loginView(function () {
-        // Check if the user is already authenticated
-        if (Auth::check()) {
-            // Redirect authenticated users based on their roles
-            if (Auth::user()->role == 'admin') {
-                return redirect()->route('admin.home');
-            } elseif (Auth::user()->role == 'user') {
-                return redirect()->route('user.home');
+        //login view
+        Fortify::loginView(function () {
+            // Check if the user is already authenticated
+            if (Auth::check()) {
+                // Redirect authenticated users based on their roles
+                if (Auth::user()->role == 'admin') {
+                    return redirect()->route('admin.home');
+                } elseif (Auth::user()->role == 'user') {
+                    return redirect()->route('user.home');
+                } elseif (Auth::user()->role == 'perawat') {
+                    return redirect()->route('perawat.home');
+                }
             }
-        }
 
-        // If not authenticated or role not defined, show the login view
-        return view('pages.auth.login');
-    });
+            // If not authenticated or role not defined, show the login view
+            return view('pages.auth.login');
+        });
 
-          //register view
-          Fortify::registerView(function () {
+        //register view
+        Fortify::registerView(function () {
             return view('pages.auth.register');
         });
     }
