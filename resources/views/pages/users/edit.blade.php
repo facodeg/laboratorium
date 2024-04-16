@@ -13,7 +13,8 @@
                         <h5 class="mb-0">Edit User</h5>
                     </div>
 
-                    <form action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data" method="POST" class="dropzone needsclick" id="dropzone-basic">
+                    <form action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data" method="POST"
+                        class="dropzone needsclick" id="dropzone-basic">
                         @csrf
                         @method('PUT')
 
@@ -115,7 +116,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-md">
+                                <div class="col-md mb-md-0 mb-2">
                                     <div class="form-check custom-option custom-option-icon">
                                         <label class="form-check-label custom-option-content" for="customRadioIcon3">
                                             <span class="custom-option-body">
@@ -125,6 +126,20 @@
                                             </span>
                                             <input name="role" class="form-check-input" type="radio" value="user"
                                                 id="customRadioIcon3" {{ $user->role == 'user' ? 'checked' : '' }} />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="form-check custom-option custom-option-icon">
+                                        <label class="form-check-label custom-option-content" for="customRadioIcon4">
+                                            <span class="custom-option-body">
+                                                <i class="ti ti-briefcase"></i>
+                                                <span class="custom-option-title">User</span>
+
+                                            </span>
+                                            <input name="role" class="form-check-input" type="radio"
+                                                value="perawat" id="customRadioIcon4"
+                                                {{ $user->role == 'perawat' ? 'checked' : '' }} />
                                         </label>
                                     </div>
                                 </div>
@@ -146,7 +161,3 @@
     </div>
     </div>
 @endsection
-
-
-
-
