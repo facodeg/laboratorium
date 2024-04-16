@@ -134,7 +134,7 @@
                                         <label class="form-check-label custom-option-content" for="customRadioIcon4">
                                             <span class="custom-option-body">
                                                 <i class="ti ti-briefcase"></i>
-                                                <span class="custom-option-title">User</span>
+                                                <span class="custom-option-title">Perawat</span>
 
                                             </span>
                                             <input name="role" class="form-check-input" type="radio"
