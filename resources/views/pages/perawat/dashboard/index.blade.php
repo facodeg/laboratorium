@@ -9,7 +9,7 @@
                  <!--/ Revenue Report -->
 
                 <!-- Earning Reports -->
-                <div class="col-xl-4 col-md-6 mb-4">
+                {{-- <div class="col-xl-4 col-md-6 mb-4">
                     <div class="card h-100">
                       <div class="card-header d-flex justify-content-between">
                         <div class="card-title mb-0">
@@ -56,7 +56,7 @@
                                             <i class="ti ti-chevron-up text-success"></i>
                                             <small class="text-muted">18.6%</small>
                                         </div> --}}
-                                    </div>
+                                    {{-- </div>
                                 </div>
                             </li>
                         @endforeach
@@ -66,10 +66,10 @@
                         <div id="reportBarChart"></div>
                       </div>
                     </div>
-                  </div>
+                  </div>  --}}
                   <!--/ Earning Reports -->
                 <!-- Earning Reports -->
-                <div class="col-xl-4 col-md-6 mb-4">
+                {{-- <div class="col-xl-4 col-md-6 mb-4">
                     <div class="card h-100">
                       <div class="card-header d-flex justify-content-between">
                         <div class="card-title mb-0">
@@ -116,7 +116,7 @@
                                             <i class="ti ti-chevron-up text-success"></i>
                                             <small class="text-muted">18.6%</small>
                                         </div> --}}
-                                    </div>
+                                    {{-- </div>
                                 </div>
                             </li>
                         @endforeach
@@ -124,11 +124,11 @@
                         <div id="reportBarChart"></div>
                       </div>
                     </div>
-                </div>
+                </div>  --}}
                   <!--/ Earning Reports -->
 
                     <!-- Earning Reports -->
-                <div class="col-xl-4 col-md-6 mb-4">
+                {{-- <div class="col-xl-4 col-md-6 mb-4">
                     <div class="card h-100">
                       <div class="card-header d-flex justify-content-between">
                         <div class="card-title mb-0">
@@ -176,7 +176,7 @@
                                             <i class="ti ti-chevron-up text-success"></i>
                                             <small class="text-muted">18.6%</small>
                                         </div> --}}
-                                    </div>
+                                    {{-- </div>
                                 </div>
                             </li>
                         @endforeach
@@ -184,7 +184,7 @@
                         <div id="reportBarChart"></div>
                       </div>
                     </div>
-                </div>
+                </div>  --}}
                   <!--/ Earning Reports -->
 
 
