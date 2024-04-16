@@ -59,5 +59,11 @@ Route::prefix('admin')
         Route::get('home', [DashboardController::class, 'index'])->name('user.home');
     });
 
+    Route::prefix('perawat')
+    ->middleware(['auth', 'auth.perawat'])
+    ->group(function () {
+        Route::get('home', [DashboardController::class, 'index'])->name('perawat.home');
+    });
+
 
 

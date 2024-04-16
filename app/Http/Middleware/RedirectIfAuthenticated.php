@@ -22,19 +22,19 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 $user = auth()->user();
-                if ( $user->role == 'admin') {
+                if ($user->role == 'admin') {
                     return redirect()->route('admin.home');
                 } elseif ($user->role == 'user') {
                     return redirect()->route('user.home');
+                } elseif ($user->role == 'perawat') {
+                    return redirect()->route('perawat.home');
                 } else {
                     Auth::logout();
                     flash('Anda tidak memiliki hak akses')->error();
-                    return redirect ()->route('login');
+                    return redirect()->route('login');
                 }
             }
         }
-
-
 
         return $next($request);
     }
